@@ -8,20 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var counter = 0
-    @State var lastUrl = "N/A"
-    @State var screenName = "Home"
-    @State var userType = "Default"
+    @State private var counter = 0
+    @State private var lastUrl = "N/A"
+    @State private var screenName = "Home"
+    @State private var userType = "Default User"
 
     var body: some View {
         VStack (spacing: 16, content: {
             Text("Counter: \(counter)")
+                .accessibilityIdentifier(AccessibilityIdentifiers.ContentView.counter.rawValue)
             Text("Last URL:")
             Text(lastUrl)
+                .accessibilityIdentifier(AccessibilityIdentifiers.ContentView.lastUrl.rawValue)
             Divider()
 
-            Text("Screen : \(screenName)")
-            Text("User Type : \(userType)")
+            Text("Screen: \(screenName)")
+                .accessibilityIdentifier(AccessibilityIdentifiers.ContentView.screenName.rawValue)
+            Text("User Type: \(userType)")
+                .accessibilityIdentifier(AccessibilityIdentifiers.ContentView.userType.rawValue)
         })
         .padding()
         .onOpenURL(perform: { url in
@@ -52,11 +56,11 @@ extension ContentView {
         case "detail":
             screenName = "Detail Screen"
         default :
-            screenName = "Home Scren"
+            screenName = "Home Screen"
         }
 
         guard let querry = querry else {
-            userType = "Default"
+            userType = "Default User"
             return
         }
 
