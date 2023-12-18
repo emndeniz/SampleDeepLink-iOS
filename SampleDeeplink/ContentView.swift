@@ -26,6 +26,10 @@ struct ContentView: View {
                 .accessibilityIdentifier(AccessibilityIdentifiers.ContentView.screenName.rawValue)
             Text("User Type: \(userType)")
                 .accessibilityIdentifier(AccessibilityIdentifiers.ContentView.userType.rawValue)
+
+            if ProcessInfo.processInfo.arguments.contains("UITEST") {
+                Text("⚠️ UI Test Running ⚠️")
+            }
         })
         .padding()
         .onOpenURL(perform: { url in
@@ -42,7 +46,6 @@ extension ContentView {
         let scheme = url.scheme
         let host = url.host
         let querry = url.query
-        print("Scheme: \(scheme), host: \(host), querryParams: \(querry)")
 
         setRouting(host: host, querry: querry)
 

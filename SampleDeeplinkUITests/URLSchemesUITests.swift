@@ -13,7 +13,8 @@ final class URLSchemesUITests: XCTestCase {
     private var app = XCUIApplication()
 
     override func setUpWithError() throws {
-        
+        app.launchArguments = ["UITEST"]
+        app.launch()
     }
 
     override func tearDownWithError() throws {
@@ -21,7 +22,6 @@ final class URLSchemesUITests: XCTestCase {
     }
 
     func test_givenListURLProvidedWithoutQuerry_whenAppLaunched_thenExpectedToSeeListScreenWithDefaultUserLabel() throws {
-
         let url = "com.example.sample://list"
         assertScreenViews(url: url,
                           screenNameText: "Screen: List Screen",
